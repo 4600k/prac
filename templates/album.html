@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Мій фотоальбом</h1>
+<a href="{{ url_for('upload') }}">Завантажити фото</a> | <a href="{{ url_for('create_folder') }}">Створити папку</a>
+
+<h2>Папки</h2>
+<ul>
+{% for folder in folders %}
+    <li><a href="{{ url_for('folder', folder_id=folder.id) }}">{{ folder.name }}</a></li>
+{% endfor %}
+</ul>
+
+<h2>Фото (без папки)</h2>
+<div>
+{% for photo in photos %}
+    <img src="{{ photo.signed_url }}" style="max-width: 200px; margin: 10px; cursor: pointer;"
+         onclick="openModal('{{ photo.signed_url }}')">
+{% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,5 @@
+runtime: python310
+
+entrypoint: gunicorn -b :$PORT app:app
+env_variables:
+  SQLALCHEMY_DATABASE_URI: "postgresql://postgres:qwerty123321@//cloudsql/photo-album-project-453212:us-central1:photo-album-db/photo_album"

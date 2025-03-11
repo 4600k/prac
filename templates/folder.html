@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Папка: {{ folder.name }}</h1>
+<a href="{{ url_for('album') }}">Повернутися до альбому</a>
+
+<h2>Підпапки</h2>
+<ul>
+{% for subfolder in subfolders %}
+    <li><a href="{{ url_for('folder', folder_id=subfolder.id) }}">{{ subfolder.name }}</a></li>
+{% endfor %}
+</ul>
+
+<h2>Фото в папці</h2>
+<div>
+{% for photo in photos %}
+    <img src="{{ photo.signed_url }}" style="max-width: 200px; margin: 10px; cursor: pointer;"
+         onclick="openModal('{{ photo.signed_url }}')">
+{% endfor %}
+</div>
+{% endblock %}
